@@ -1,29 +1,29 @@
-import { Div } from "components/Wrappers/Wrappers" 
+import { Div,P } from 'components/Wrappers/Wrappers';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+import PropTypes from 'prop-types'
 
-const SearchBar = ({onSubmitFilter}) => {
-    return(
- <Div m='4'>
-    <Formik
-          initialValues={{ search: '' }}
-          onSubmit={(values, {resetForm}) => {
-            //e.preventDefault();
-            onSubmitFilter(values.search);
-            resetForm();
-          }}
-        >
-          <Form>
-            <Field
-              name="search"
-              type="text"
-              required
-            />
-            <ErrorMessage name="firstName" />
-            <button type="submit">Search</button>
-          </Form>
-        </Formik>
- </Div>
- )
+const SearchBar = ({ onSubmitFilter }) => {
+  return (
+    <Div m="4" fontSize='m'>
+      <Formik
+        initialValues={{ search: '' }}
+        onSubmit={(values, { resetForm }) => {
+          onSubmitFilter(values.search);
+          resetForm();
+        }}
+      >
+        <Form>
+          <Field style={{ fontSize: "2rem" }}  name="search" type="text" required autoComplete='off' />
+          <ErrorMessage name="firstName" />
+          <P fontSize='l' m='1' as='button' type="submit">Search</P>
+        </Form>
+      </Formik>
+    </Div>
+  );
+};
+
+SearchBar.propTypes = {
+    onSubmitFilter: PropTypes.func.isRequired,
 }
 
 export default SearchBar;
