@@ -18,10 +18,10 @@ const Movies = () => {
   const submitFilter = value => {
     setSearchParams(value !== '' ? { query: value } : {});
   };
-
+ 
   return (
     <main>
-      <SearchBar onSubmitFilter={submitFilter} />
+      <SearchBar onSubmitFilter={submitFilter} query={queryParams}/>
       {movies.length > 0 && (
         <ul>
           {movies.map(movie => (

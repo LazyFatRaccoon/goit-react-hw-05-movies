@@ -5,14 +5,16 @@ import { Div, P } from 'components/Wrappers/Wrappers';
 import AdditionalInfo from 'components/AdditionalInfo/AdditionalInfo';
 import { BackLink } from '../../components/commonStyled';
 
+
 const MovieDetails = () => {
   const location = useLocation();
+  const backRef = location.state?.from ?? '/movies';
 
-  if (location.state?.from)
-    localStorage.setItem('prevPage', JSON.stringify(location.state.from));
-  const refHref = localStorage.getItem('prevPage')
-    ? JSON.parse(localStorage.getItem('prevPage'))
-    : '/movies';
+  // if (location.state?.from)
+  //   localStorage.setItem('prevPage', JSON.stringify(location.state.from));
+  // const refHref = localStorage.getItem('prevPage')
+  //   ? JSON.parse(localStorage.getItem('prevPage'))
+  //   : '/movies';
 
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
@@ -20,9 +22,9 @@ const MovieDetails = () => {
   useEffect(() => {
     getMovieById(`${movieId}`).then(setMovie);
   }, [movieId]);
-  useEffect(() => {
-    return () => localStorage.removeItem('prevPage');
-  }, []);
+  // useEffect(() => {
+  //   return () => localStorage.removeItem('prevPage');
+  // }, []);
 
   if (!movie) {
     <p>Loading...</p>;
@@ -43,7 +45,7 @@ const MovieDetails = () => {
   return (
     <Div>
       <Div m="4">
-        <BackLink to={refHref}> Back to USSA</BackLink>
+        <BackLink to={backRef}> Back to USSA</BackLink>
       </Div>
       <Div display="flex" m="4">
         <Div as="img" src={moviePoster} alt={movie.title} mr="4" />
@@ -62,7 +64,7 @@ const MovieDetails = () => {
           <P fontSize="m">{genres}</P>
         </Div>
       </Div>
-      <AdditionalInfo />
+      <AdditionalInfo linkRef={backRef}/>
       <Outlet />
     </Div>
   );
