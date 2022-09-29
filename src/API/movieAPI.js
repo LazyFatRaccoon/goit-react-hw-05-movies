@@ -34,8 +34,11 @@ async function getMovieById(id) {
     const { data } = await axios.get(`${MOVIE_ID_URL}${id}?api_key=${API_KEY}`);
     return data;
   } catch (error) {
-    window.location.href = '/goit-react-hw-05-movies/404';
-    return;
+    
+    
+    return error
+    //window.location.href = '/goit-react-hw-05-movies/404';
+    //return;
   }
 }
 

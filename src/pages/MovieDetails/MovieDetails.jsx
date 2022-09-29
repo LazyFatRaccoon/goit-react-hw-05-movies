@@ -18,7 +18,7 @@ const MovieDetails = () => {
 
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-
+  
   useEffect(() => {
     getMovieById(`${movieId}`).then(setMovie);
   }, [movieId]);
@@ -30,6 +30,12 @@ const MovieDetails = () => {
     <p>Loading...</p>;
     return;
   }
+  
+  if (movie.response?.status === 404) return (
+    <Div>
+      <P fontSize="xl" m='3'> No such movie </P>
+    </Div>
+  ) 
   const raiting = (Number(movie.vote_average) * 10).toFixed(0) + '%';
   const moviePoster = movie.poster_path
     ? `https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`
