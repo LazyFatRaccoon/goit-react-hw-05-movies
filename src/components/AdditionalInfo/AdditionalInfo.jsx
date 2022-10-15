@@ -1,7 +1,7 @@
 import { Div, P } from 'components/Wrappers/Wrappers';
 import { StyledInfoLink } from 'components/commonStyled';
 
-const AdditionalInfo = ({linkRef}) => {
+const AdditionalInfo = ({ linkRef }) => {
   return (
     <Div borderBottom="1px solid" borderTop="1px solid">
       <P mx="4" fontSize="m">
@@ -9,10 +9,14 @@ const AdditionalInfo = ({linkRef}) => {
       </P>
       <ul>
         <li>
-          <StyledInfoLink to="cast" state= {{ from: linkRef}}>Cast</StyledInfoLink>
+          <StyledInfoLink to="cast" state={{ from: linkRef }}>
+            Cast
+          </StyledInfoLink>
         </li>
         <li>
-          <StyledInfoLink to="reviews" state= {{ from: linkRef}}>Reviews</StyledInfoLink>
+          <StyledInfoLink to="reviews" state={{ from: linkRef }}>
+            Reviews
+          </StyledInfoLink>
         </li>
       </ul>
     </Div>
